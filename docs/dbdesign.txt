@@ -8,6 +8,7 @@ Table1: User
 	- contact (Table) (1:N)
 	- role (Table)
 	- locale (varchar 10)
+	- project (table)
 
 Table2: Contact
 	- id (pk) (unsigned int)
@@ -20,3 +21,9 @@ Table3: Role
 	- roleName (varchar 50)
 	- desc (clob)
 	- locale (varchar 10)   #5 should be enough. 10 to accomodate custom locales
+
+Table4: Project
+	- id (pk) (varchar 5)
+	- name (varchar 100)
+	- desc (clob)
+	- owner (Table : User)
