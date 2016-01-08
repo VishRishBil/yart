@@ -6,7 +6,7 @@ Table1: User
 	- password (varchar 64)
 	- userStatus (bit 8)
 	- contact (Table) (1:N)
-	- role (Table)
+	- role (Table)(1:1)
 	- locale (varchar 10)
 
 Table2: Contact
