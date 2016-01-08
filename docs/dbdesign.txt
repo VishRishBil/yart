@@ -1,0 +1,22 @@
+Table1: User
+	- userId (pk) (varchar 100)
+	- email (unique) (varchar 50)
+	- firstName (varchar 100)
+	- lastName (varchar 100)
+	- password (varchar 64)
+	- userStatus (bit 8)
+	- contact (Table) (1:N)
+	- role (Table)
+	- locale (varchar 10)
+
+Table2: Contact
+	- id (pk) (unsigned int)
+	- userId (fk User:userId) (N:1)
+	- type (varchar 10) (enum)
+	- value (varchar 100)
+
+Table3: Role
+	- id (pk) (unsigned int)
+	- roleName (varchar 50)
+	- desc (clob)
+	- locale (varchar 10)   #5 should be enough. 10 to accomodate custom locales
