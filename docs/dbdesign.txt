@@ -8,7 +8,7 @@ Table1: User
 	- contact (Table) (1:N)
 	- role (Table)(N:1)
 	- locale (varchar 10)
-	- project (table)
+	- project (table) (N:1)
 
 Table2: Contact
 	- id (pk) (unsigned int)
