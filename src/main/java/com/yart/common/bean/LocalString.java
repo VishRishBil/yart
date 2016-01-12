@@ -1,4 +1,4 @@
-package com.yart.bean;
+package com.yart.common.bean;
 
 import java.util.HashMap;
 import java.util.Map;

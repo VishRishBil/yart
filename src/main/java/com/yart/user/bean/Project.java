@@ -1,4 +1,4 @@
-package com.yart.bean;
+package com.yart.user.bean;
 
 public class Project {
 	
@@ -6,11 +6,11 @@ public class Project {
 	
 	private String name;
 	
-	private LocalString description;
+	private String description;
 	
 	private User owner;
 
-	public Project(int id, String name, LocalString description, User owner) {
+	public Project(int id, String name, String description, User owner) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -18,14 +18,6 @@ public class Project {
 		this.owner = owner;
 	}
 	
-	public Project(int id, String name, String description, User owner) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = new LocalString(description);
-		this.owner = owner;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -42,11 +34,11 @@ public class Project {
 		this.name = name;
 	}
 
-	public LocalString getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(LocalString description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -57,9 +49,5 @@ public class Project {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-	
-	
-	
-	
 
 }

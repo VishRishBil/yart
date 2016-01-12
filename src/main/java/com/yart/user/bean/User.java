@@ -1,4 +1,4 @@
-package com.yart.bean;
+package com.yart.user.bean;
 
 import java.util.List;
 
