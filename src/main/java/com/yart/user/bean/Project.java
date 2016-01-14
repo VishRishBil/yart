@@ -7,59 +7,59 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="project")
+@Table(name = "project")
 public class Project {
-	
-	@Id
-	private int id;
-	
-	@Column
-	private String name;
-	
-	@Column
-	private String description;
-	
-	@ManyToOne
-	private User owner;
 
-	public Project(int id, String name, String description, User owner) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.owner = owner;
-	}
-	
-	public int getId() {
-		return id;
-	}
+    @Id
+    private int id;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @Column
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @Column
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @ManyToOne
+    private User owner;
 
-	public String getDescription() {
-		return description;
-	}
+    public Project(int id, String name, String description, User owner) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.owner = owner;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public User getOwner() {
-		return owner;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
 }
