@@ -2,14 +2,25 @@ package com.yart.user.bean;
 
 import java.util.Locale;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="role")
 public class Role {
 	
+	@Id
 	private int id;
 	
+	@Column
 	private String roleName;
 	
+	@Column
 	private String description;
 	
+	@Column
 	private Locale locale;
 
 	public Role(int id, String roleName, String description, String locale) {

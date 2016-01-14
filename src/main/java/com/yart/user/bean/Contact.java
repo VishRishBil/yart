@@ -1,35 +1,24 @@
 package com.yart.user.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="contact")
 public class Contact {
 
-	public enum ContactType {
-		EMAIL("email"), PHONE("phone"), MOBILE("mobile"), ADDRESS("address"),SKYPE("im:skype"),UNDEFINED("");
+	
 
-		private String name;
-		
-		ContactType(String name){
-			this.name =name;
-		}
-		
-		public String getName(){
-			return this.name;
-		}
-		
-		public static ContactType getContactTypeByName(String name){
-			for(ContactType c : ContactType.values()){
-				if(c.getName().equals(name)){
-					return c;
-				}
-			}
-			return UNDEFINED;
-		}
-		
-	}
-
+	@Id
 	private int id;
 
+	@Enumerated
 	private ContactType type;
 
+	@Column
 	private String value;
 
 	public Contact(int id, String type,
@@ -65,6 +54,28 @@ public class Contact {
 	}
 	
 	
+	public enum ContactType {
+		EMAIL("email"), PHONE("phone"), MOBILE("mobile"), ADDRESS("address"),SKYPE("im:skype"),UNDEFINED("");
 
+		private String name;
+		
+		ContactType(String name){
+			this.name =name;
+		}
+		
+		public String getName(){
+			return this.name;
+		}
+		
+		public static ContactType getContactTypeByName(String name){
+			for(ContactType c : ContactType.values()){
+				if(c.getName().equals(name)){
+					return c;
+				}
+			}
+			return UNDEFINED;
+		}
+		
+	}
 	
 }
