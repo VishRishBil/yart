@@ -47,11 +47,26 @@ public class MockUserServiceTest {
 
     @Test
     public void testModifyUser() {
-        fail("Not yet implemented");
+    	User user1 = new User();
+        user1.setEmail("abc@gmail.com");
+        try {
+        	UserWrapper result1 = userService.modifyUser(user1);
+        	assertNull(result1.getUser().getPassword());
+        	assertEquals(result1.getStatusCode(), STATUS_CODES.MODIFY_OK);
+        	
+        }catch (YartServiceException e){
+        	e.printStackTrace();
+        }
     }
 
     @Test
     public void testRemoveUser() {
+    	try{
+    		boolean result = userService.removeUser("abc@gmail.com");
+    		assertTrue(result);
+    	} catch( YartServiceException e){
+    		e.printStackTrace();
+    	}
         fail("Not yet implemented");
     }
 
@@ -72,12 +87,22 @@ public class MockUserServiceTest {
 
     @Test
     public void testDoesUserIdExist() {
-        fail("Not yet implemented");
+    	try {
+			assertTrue(userService.doesUserIdExist("existent_1"));
+	    	assertFalse(userService.doesUserIdExist("nonexistent_1"));
+		} catch (YartServiceException e) {
+			e.printStackTrace();
+		}
     }
 
     @Test
     public void testDoesEmailExist() {
-        fail("Not yet implemented");
+    	try {
+			assertTrue(userService.doesEmailExist("abc@gmail.com"));
+	    	assertFalse(userService.doesEmailExist("abc@xyz.com"));
+		} catch (YartServiceException e) {
+			e.printStackTrace();
+		}
     }
 
     @Test

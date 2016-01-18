@@ -17,9 +17,9 @@ public class MockUserServiceImpl implements UserService {
             throw new YartServiceException("Mandatory Fields Empty");
         }
         UserWrapper result = new UserWrapper();
-        if(email.endsWith("@gmail.com")){
+        if(doesEmailExist(email)){
             result.setStatusCode(STATUS_CODES.EMAIL_EXISTS);
-        } else if("exists".equals(user.getUserId())){
+        } else if(doesUserIdExist(userId)){
             result.setStatusCode(STATUS_CODES.USERID_EXISTS);
         } else {
             result.setStatusCode(STATUS_CODES.CREATE_OK);
@@ -58,16 +58,20 @@ public class MockUserServiceImpl implements UserService {
         return null;
     }
 
+    /**
+     * User ids starting with existent_ exists
+     */
     @Override
     public boolean doesUserIdExist(String userId) throws YartServiceException {
-        // TODO Auto-generated method stub
-        return false;
+        return userId.startsWith("existent_");
     }
 
+    /**
+     * Emails with domain Gmail exists
+     */
     @Override
     public boolean doesEmailExist(String email) throws YartServiceException {
-        // TODO Auto-generated method stub
-        return false;
+        return email.endsWith("@gmail.com");
     }
 
     @Override
