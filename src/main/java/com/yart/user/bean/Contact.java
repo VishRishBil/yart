@@ -1,70 +1,77 @@
 package com.yart.user.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "contact")
 public class Contact {
 
-	public enum ContactType {
-		EMAIL("email"), PHONE("phone"), MOBILE("mobile"), ADDRESS("address"),SKYPE("im:skype"),UNDEFINED("");
+    @Id
+    private int id;
 
-		private String name;
-		
-		ContactType(String name){
-			this.name =name;
-		}
-		
-		public String getName(){
-			return this.name;
-		}
-		
-		public static ContactType getContactTypeByName(String name){
-			for(ContactType c : ContactType.values()){
-				if(c.getName().equals(name)){
-					return c;
-				}
-			}
-			return UNDEFINED;
-		}
-		
-	}
+    @Enumerated
+    private ContactType type;
 
-	private int id;
+    @Column
+    private String value;
 
-	private ContactType type;
+    public Contact(int id, String type, String value) {
+        super();
+        this.id = id;
+        this.type = ContactType.getContactTypeByName(type);
+        this.value = value;
+    }
 
-	private String value;
+    public int getId() {
+        return id;
+    }
 
-	public Contact(int id, String type,
-			String value) {
-		super();
-		this.id = id;
-		this.type = ContactType.getContactTypeByName(type);
-		this.value = value;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public ContactType getType() {
+        return type;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setType(ContactType type) {
+        this.type = type;
+    }
 
-	public ContactType getType() {
-		return type;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public void setType(ContactType type) {
-		this.type = type;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public enum ContactType {
+        EMAIL("email"), PHONE("phone"), MOBILE("mobile"), ADDRESS("address"), SKYPE("im:skype"), UNDEFINED("");
 
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
-	
+        private String name;
 
-	
+        ContactType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public static ContactType getContactTypeByName(String name) {
+            for (ContactType c : ContactType.values()) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
+            }
+            return UNDEFINED;
+        }
+
+    }
+
 }

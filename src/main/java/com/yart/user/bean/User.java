@@ -2,23 +2,44 @@ package com.yart.user.bean;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="user")
 public class User {
+	
+	@Id
 	private String userId;
 
+	@Column(unique=true)
 	private String email;
 
+	@Column
 	private String firstName;
 
+	@Column
 	private String password;
 
+	@Column
 	private byte userStatus;
 
+	@Column
+	@OneToMany(mappedBy="id")
 	private List<Contact> contacts;
 
+	@ManyToOne
 	private Role role;
 
+	@Column
 	private String locale;
 
+	@ManyToOne
 	private Project project;
 
 	public String getUserId() {
