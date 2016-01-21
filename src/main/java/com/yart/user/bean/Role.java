@@ -8,63 +8,59 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
+@Table(name = "role")
 public class Role {
-	
-	@Id
-	private int id;
-	
-	@Column
-	private String roleName;
-	
-	@Column
-	private String description;
-	
-	@Column
-	private Locale locale;
 
-	public Role(int id, String roleName, String description, String locale) {
-		super();
-		this.id = id;
-		this.roleName = roleName;
-		this.description = description;
-		this.locale = Locale.forLanguageTag(locale);
-	}
+    @Id
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    @Column
+    private String roleName;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @Column
+    private String description;
 
-	public String getRoleName() {
-		return roleName;
-	}
+    @Column
+    private Locale locale;
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+    public Role(int id, String roleName, String description, String locale) {
+        super();
+        this.id = id;
+        this.roleName = roleName;
+        this.description = description;
+        this.locale = Locale.forLanguageTag(locale);
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public String getRoleName() {
+        return roleName;
+    }
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
-	
-	
-	
-	
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
 
 }
