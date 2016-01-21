@@ -91,10 +91,11 @@ public interface UserService {
     /**
      * Modify forgotten password
      * This method should be called after sufficient security checks
+     * @param user
      * @param newPassword
      * @return
      * @throws YartServiceException
      */
-    public boolean modifyForgottenPassword(String newPassword) throws YartServiceException;
+    public boolean modifyForgottenPassword(User user, String newPassword) throws YartServiceException;
     
 }

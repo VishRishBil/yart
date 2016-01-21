@@ -30,31 +30,48 @@ public class MockUserServiceImpl implements UserService {
 
     @Override
     public UserWrapper modifyUser(User user) throws YartServiceException {
-        // TODO Auto-generated method stub
-        return null;
+        UserWrapper result = new UserWrapper();
+        if(doesUserIdExist(user.getUserId())){
+            result.setStatusCode(STATUS_CODES.MODIFY_OK);
+            result.setUser(user);
+        } else {
+            result.setStatusCode(STATUS_CODES.OPERATION_FAILED);
+        }
+        return result;
     }
 
     @Override
     public boolean removeUser(String userId) throws YartServiceException {
-        // TODO Auto-generated method stub
+        if(doesUserIdExist(userId)){
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean deactivateUser(String userId) throws YartServiceException {
-        // TODO Auto-generated method stub
+        if(doesUserIdExist(userId)){
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean activateUser(String userId) throws YartServiceException {
-        // TODO Auto-generated method stub
+        if(doesUserIdExist(userId)){
+            return true;
+        }
         return false;
     }
 
     @Override
     public User getUserById(String userId) throws YartServiceException {
-        // TODO Auto-generated method stub
+        if(doesUserIdExist(userId)){
+            User user = new User();
+            user.setUserId(userId);
+            user.setEmail(userId.split("_")[1]+"@gmail.com");
+            return user;
+        }
         return null;
     }
 
@@ -76,13 +93,21 @@ public class MockUserServiceImpl implements UserService {
 
     @Override
     public UserWrapper modifyPassword(User user, String oldPassword, String newPassword) throws YartServiceException {
-        // TODO Auto-generated method stub
-        return null;
+        UserWrapper result = new UserWrapper();
+        if(doesUserIdExist(user.getUserId())){
+            result.setStatusCode(STATUS_CODES.MODIFY_OK);
+            result.setUser(user);
+        } else {
+            result.setStatusCode(STATUS_CODES.OPERATION_FAILED);
+        }
+        return result;
     }
 
     @Override
-    public boolean modifyForgottenPassword(String newPassword) throws YartServiceException {
-        // TODO Auto-generated method stub
+    public boolean modifyForgottenPassword(User user, String newPassword) throws YartServiceException {
+        if(doesUserIdExist(user.getUserId())){
+            return true;
+        }
         return false;
     }
 
