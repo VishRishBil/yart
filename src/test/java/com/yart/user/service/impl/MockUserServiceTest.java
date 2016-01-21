@@ -42,6 +42,7 @@ public class MockUserServiceTest {
             assertEquals(STATUS_CODES.EMAIL_EXISTS, result1.getStatusCode());
             assertEquals(STATUS_CODES.USERID_EXISTS, result2.getStatusCode());
             assertEquals(STATUS_CODES.CREATE_OK, result3.getStatusCode());
+            assertNull(result3.getUser().getPassword());
         } catch (YartServiceException e) {
             e.printStackTrace();
         }
@@ -55,6 +56,7 @@ public class MockUserServiceTest {
         try {
             UserWrapper result1 = userService.modifyUser(user1);
             assertEquals(result1.getStatusCode(), STATUS_CODES.MODIFY_OK);
+            assertNull(result1.getUser().getPassword());
 
         } catch (YartServiceException e) {
             e.printStackTrace();
@@ -97,6 +99,7 @@ public class MockUserServiceTest {
             User user1 = userService.getUserById("existent_abc");
             User user2 = userService.getUserById("nonexistent_mno");
             assertEquals("abc@gmail.com", user1.getEmail());
+            assertNull(user1.getPassword());
             assertNull(user2);
         } catch (YartServiceException e) {
             e.printStackTrace();
@@ -133,6 +136,7 @@ public class MockUserServiceTest {
             UserWrapper result1 = userService.modifyPassword(user1, "oldPassword", "newPassword");
             UserWrapper result2 = userService.modifyPassword(user2, "oldPassword", "newPassword");
             assertEquals(STATUS_CODES.MODIFY_OK, result1.getStatusCode());
+            assertNull(result1.getUser().getPassword());
             assertEquals(STATUS_CODES.OPERATION_FAILED, result2.getStatusCode());
         } catch(YartServiceException e){
             e.printStackTrace();

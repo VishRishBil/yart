@@ -70,6 +70,10 @@ public class User {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public boolean isActive() {
         return active;
     }
