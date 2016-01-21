@@ -26,7 +26,8 @@ public class User {
     private String password;
 
     @Column
-    private byte userStatus;
+    private boolean active;
+
 
     @Column
     @OneToMany(mappedBy = "id")
@@ -69,12 +70,12 @@ public class User {
         this.password = password;
     }
 
-    public byte getUserStatus() {
-        return userStatus;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setUserStatus(byte userStatus) {
-        this.userStatus = userStatus;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public List<Contact> getContacts() {
