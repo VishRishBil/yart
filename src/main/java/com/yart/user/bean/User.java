@@ -9,109 +9,109 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
-	
-	@Id
-	private String userId;
 
-	@Column(unique=true)
-	private String email;
+    @Id
+    private String userId;
 
-	@Column
-	private String firstName;
+    @Column(unique = true)
+    private String email;
 
-	@Column
-	private String password;
+    @Column
+    private String firstName;
 
-	@Column
-	private byte userStatus;
+    @Column
+    private String password;
 
-	@Column
-	@OneToMany(mappedBy="id")
-	private List<Contact> contacts;
+    @Column
+    private boolean active;
 
-	@ManyToOne
-	private Role role;
 
-	@Column
-	private String locale;
+    @Column
+    @OneToMany(mappedBy = "id")
+    private List<Contact> contacts;
 
-	@ManyToOne
-	private Project project;
+    @ManyToOne
+    private Role role;
 
-	public String getUserId() {
-		return userId;
-	}
+    @Column
+    private String locale;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    @ManyToOne
+    private Project project;
 
-	public String getEmail() {
-		return email;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public byte getUserStatus() {
-		return userStatus;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setUserStatus(byte userStatus) {
-		this.userStatus = userStatus;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public List<Contact> getContacts() {
-		return contacts;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public Project getProject() {
-		return project;
-	}
+    public String getLocale() {
+        return locale;
+    }
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
 }
