@@ -66,10 +66,16 @@ public class MockUserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String userId) throws YartServiceException {
+        return getUserById(userId, false);
+    }
+    public User getUserById(String userId, boolean needPassword) throws YartServiceException {
         if(doesUserIdExist(userId)){
             User user = new User();
             user.setUserId(userId);
             user.setEmail(userId.split("_")[1]+"@gmail.com");
+            user.setPassword(needPassword ? "password" : null);
+            user.setActive(userId.contains("_active"));
+                            
             return user;
         }
         return null;
@@ -110,5 +116,27 @@ public class MockUserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public UserWrapper verifyCredentials(User user) throws YartServiceException {
+        String password = user.getPassword();
+        String userId = user.getUserId();
+        if(userId==null || password == null){
+            throw new YartServiceException("UserId or Password is null");
+        }
+        User userFromDB = getUserById(userId, true);
+        UserWrapper result = new UserWrapper();
+        if(userFromDB != null && password.equals(userFromDB.getPassword())){
+            userFromDB.setPassword(null);
+            result.setUser(user);
+            result.setStatusCode(userFromDB.isActive() ? 
+                    STATUS_CODES.VALID_CREDENTIALS : STATUS_CODES.USER_INACTIVE);
+        } else {
+            result.setStatusCode(STATUS_CODES.INVALID_CREDENTIALS);
+        }
+        return result;
+    }
+
+   
 
 }

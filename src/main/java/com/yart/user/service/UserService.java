@@ -98,4 +98,12 @@ public interface UserService {
      */
     public boolean modifyForgottenPassword(User user, String newPassword) throws YartServiceException;
     
+    /**
+     * Verify whether the credentials are valid for the user
+     * @param user
+     * @return UserWrapper has User object (only if valid credentials) and status
+     * @throws YartServiceException
+     */
+    public UserWrapper verifyCredentials(User user) throws YartServiceException; 
+    
 }
