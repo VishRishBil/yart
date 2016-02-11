@@ -85,7 +85,7 @@ public interface UserService {
      * @return
      * @throws YartServiceException
      */
-    public UserWrapper modifyPassword(User user, String oldPassword, String newPassword) throws YartServiceException;
+    public UserWrapper modifyPassword(User user, String newPassword) throws YartServiceException;
     
 
     /**

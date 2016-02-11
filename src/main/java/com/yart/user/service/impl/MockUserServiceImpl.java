@@ -98,18 +98,6 @@ public class MockUserServiceImpl implements UserService {
     }
 
     @Override
-    public UserWrapper modifyPassword(User user, String oldPassword, String newPassword) throws YartServiceException {
-        UserWrapper result = new UserWrapper();
-        if(doesUserIdExist(user.getUserId())){
-            result.setStatusCode(STATUS_CODES.MODIFY_OK);
-            result.setUser(user);
-        } else {
-            result.setStatusCode(STATUS_CODES.OPERATION_FAILED);
-        }
-        return result;
-    }
-
-    @Override
     public boolean modifyForgottenPassword(User user, String newPassword) throws YartServiceException {
         if(doesUserIdExist(user.getUserId())){
             return true;
@@ -133,6 +121,19 @@ public class MockUserServiceImpl implements UserService {
                     STATUS_CODES.VALID_CREDENTIALS : STATUS_CODES.USER_INACTIVE);
         } else {
             result.setStatusCode(STATUS_CODES.INVALID_CREDENTIALS);
+        }
+        return result;
+    }
+
+    @Override
+    public UserWrapper modifyPassword(User user, String newPassword) throws YartServiceException {
+        UserWrapper result = new UserWrapper();
+        if(doesUserIdExist(user.getUserId())){
+            result.setStatusCode(STATUS_CODES.MODIFY_OK);
+            user.setPassword(null);
+            result.setUser(user);
+        } else {
+            result.setStatusCode(STATUS_CODES.OPERATION_FAILED);
         }
         return result;
     }
