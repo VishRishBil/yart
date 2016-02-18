@@ -85,7 +85,7 @@ public interface UserService {
      * @return
      * @throws YartServiceException
      */
-    public UserWrapper modifyPassword(User user, String oldPassword, String newPassword) throws YartServiceException;
+    public UserWrapper modifyPassword(User user, String newPassword) throws YartServiceException;
     
 
     /**
@@ -97,5 +97,13 @@ public interface UserService {
      * @throws YartServiceException
      */
     public boolean modifyForgottenPassword(User user, String newPassword) throws YartServiceException;
+    
+    /**
+     * Verify whether the credentials are valid for the user
+     * @param user
+     * @return UserWrapper has User object (only if valid credentials) and status
+     * @throws YartServiceException
+     */
+    public UserWrapper verifyCredentials(User user) throws YartServiceException; 
     
 }

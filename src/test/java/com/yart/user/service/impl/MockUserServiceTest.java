@@ -156,5 +156,31 @@ public class MockUserServiceTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void testVerifyCredentials(){
+        User user1 = new User();
+        user1.setUserId("existent_active");
+        user1.setPassword("wrongpassword");
+        User user2 = new User();
+        user2.setUserId("existent_inactive");
+        user2.setPassword("password");
+        User user3 = new User();
+        user3.setUserId("nonexistent_1");
+        user3.setPassword("password");
+        try{
+            UserWrapper result1 = userService.verifyCredentials(user1);
+            assertEquals(STATUS_CODES.INVALID_CREDENTIALS, result1.getStatusCode());
+            user1.setPassword("password");
+            result1 = userService.verifyCredentials(user1);
+            assertEquals(STATUS_CODES.VALID_CREDENTIALS, result1.getStatusCode());
+            UserWrapper result2 = userService.verifyCredentials(user2);
+            assertEquals(STATUS_CODES.USER_INACTIVE, result2.getStatusCode());
+            UserWrapper result3 = userService.verifyCredentials(user3);
+            assertEquals(STATUS_CODES.INVALID_CREDENTIALS, result3.getStatusCode());
+        } catch(YartServiceException e){
+            e.printStackTrace();
+        }
+    }
 
 }
