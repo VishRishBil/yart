@@ -138,6 +138,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserWrapper modifyPassword(User user, String newPassword) throws YartServiceException {
+        if(newPassword == null){
+            return new UserWrapper(user, STATUS_CODES.OPERATION_FAILED);
+        }
         UserWrapper result = verifyCredentials(user);
         if(STATUS_CODES.VALID_CREDENTIALS.equals(result.getStatusCode())){
             user = getUserById(user.getUserId());
@@ -163,10 +166,9 @@ public class UserServiceImpl implements UserService {
         password = CryptUtil.getMessageDigest(password);
         User userFromDB = getUserById(userId, true);
         UserWrapper result = new UserWrapper();
-        result.setUser(userFromDB);
         if(userFromDB != null && password.equals(userFromDB.getPassword())){
             userFromDB.setPassword(null);
-            result.setUser(user);
+            result.setUser(userFromDB);
             result.setStatusCode(userFromDB.isActive() ? 
                     STATUS_CODES.VALID_CREDENTIALS : STATUS_CODES.USER_INACTIVE);
         } else {
