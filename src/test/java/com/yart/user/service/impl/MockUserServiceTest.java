@@ -130,11 +130,13 @@ public class MockUserServiceTest {
     public void testModifyPassword() {
         User user1 = new User();
         user1.setUserId("existent_1");
+        user1.setPassword("oldPassword");
         User user2 = new User();
         user2.setUserId("nonexistent_1");
+        user2.setPassword("oldPassword");
         try {
-            UserWrapper result1 = userService.modifyPassword(user1, "oldPassword", "newPassword");
-            UserWrapper result2 = userService.modifyPassword(user2, "oldPassword", "newPassword");
+            UserWrapper result1 = userService.modifyPassword(user1, "newPassword");
+            UserWrapper result2 = userService.modifyPassword(user2, "newPassword");
             assertEquals(STATUS_CODES.MODIFY_OK, result1.getStatusCode());
             assertNull(result1.getUser().getPassword());
             assertEquals(STATUS_CODES.OPERATION_FAILED, result2.getStatusCode());
