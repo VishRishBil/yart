@@ -1,5 +1,6 @@
 package com.yart.user.bean;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -41,6 +42,9 @@ public class User {
 
     @ManyToOne
     private Project project;
+    
+    @Column
+    private Date lastModified;
 
     public String getUserId() {
         return userId;
@@ -151,5 +155,6 @@ public class User {
                 + ", contacts=" + contacts + ", role=" + role + ", locale=" + locale + ", project=" + project + "]";
     }
 
+    
     
 }

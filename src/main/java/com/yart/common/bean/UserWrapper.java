@@ -14,6 +14,15 @@ public class UserWrapper {
 
     private STATUS_CODES statusCode;
 
+    public UserWrapper(){
+        super();
+    }
+    
+    public UserWrapper(User user, STATUS_CODES statusCode) {
+        this.user = user;
+        this.statusCode = statusCode;
+    }
+
     public User getUser() {
         return user;
     }
